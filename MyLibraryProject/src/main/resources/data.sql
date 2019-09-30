@@ -1,0 +1,1 @@
+INSERT INTO books (ID,NAME) VALUES (1,'Panos')
