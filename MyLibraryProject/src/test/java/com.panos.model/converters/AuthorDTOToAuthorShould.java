@@ -20,6 +20,7 @@ class AuthorDTOToAuthorShould {
         String name = "Author";
         authorDTO.setName(name);
         Author author = this.authorDTOToAuthor.convert(authorDTO);
+
         assertEquals(author.getName(),name);
     }
 
@@ -29,6 +30,7 @@ class AuthorDTOToAuthorShould {
         Long id = 1L;
         authorDTO.setId(id);
         Author author = authorDTOToAuthor.convert(authorDTO);
+
         assertEquals(author.getId(),id);
     }
 
@@ -38,6 +40,7 @@ class AuthorDTOToAuthorShould {
         List<Book> bookList = Arrays.asList(new Book("Book1"),new Book("Book2"));
         authorDTO.setBooks(bookList);
         Author author = this.authorDTOToAuthor.convert(authorDTO);
+
         assertEquals(author.getBooks(),bookList);
     }
 }

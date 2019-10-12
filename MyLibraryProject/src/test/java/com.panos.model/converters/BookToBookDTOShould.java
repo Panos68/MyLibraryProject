@@ -16,6 +16,7 @@ class BookToBookDTOShould {
         String name = "Book";
         book.setName(name);
         BookDTO bookDTO = this.bookToBookDTO.convert(book);
+
         assertEquals(bookDTO.getName(), name);
     }
 
@@ -25,6 +26,7 @@ class BookToBookDTOShould {
         Long id = 1L;
         book.setId(id);
         BookDTO bookDTO = this.bookToBookDTO.convert(book);
+
         assertEquals(bookDTO.getId(), id);
     }
 

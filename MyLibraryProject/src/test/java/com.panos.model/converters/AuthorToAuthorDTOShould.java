@@ -3,7 +3,7 @@ package com.panos.model.converters;
 import com.panos.model.Author;
 import com.panos.model.Book;
 import com.panos.model.dto.AuthorDTO;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -18,7 +18,7 @@ class AuthorToAuthorDTOShould {
     private List<Book> bookList = Arrays.asList(new Book("Book1"),new Book("Book2"));
     private Author author;
 
-    @BeforeEach
+    @Before
     void setUp() {
        author = new Author(name, bookList);
     }
@@ -26,6 +26,7 @@ class AuthorToAuthorDTOShould {
     @Test
     void keepNameAfterConversion(){
         AuthorDTO authorDTO = this.authorToAuthorDTO.convert(author);
+
         assertEquals(authorDTO.getName(),name);
     }
 
@@ -34,12 +35,14 @@ class AuthorToAuthorDTOShould {
         Long id=1L;
         author.setId(id);
         AuthorDTO authorDTO = this.authorToAuthorDTO.convert(author);
+
         assertEquals(authorDTO.getId(),id);
     }
 
     @Test
     void keepBooksAfterConversion(){
         AuthorDTO authorDTO = this.authorToAuthorDTO.convert(author);
+
         assertEquals(authorDTO.getBooks(), bookList);
     }
 }

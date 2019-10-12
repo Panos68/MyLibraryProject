@@ -42,12 +42,14 @@ public class BookServiceShould {
     @Before
     public void setUp() {
         bookService = new BookServiceImpl(bookRepository, conversionService);
+
         book1 = new Book("Book1");
         book1.setId(id);
         book2 = new Book("Book2");
+        when(bookRepository.findAll()).thenReturn(bookList);
+
         BookDTO bookDTO1 = new BookDTO();
         BookDTO bookDTO2 = new BookDTO();
-        when(bookRepository.findAll()).thenReturn(bookList);
         when(conversionService.convert(book1, BookDTO.class)).thenReturn(bookDTO1);
         when(conversionService.convert(book2, BookDTO.class)).thenReturn(bookDTO2);
     }
@@ -56,6 +58,7 @@ public class BookServiceShould {
     public void returnBookIfIdExists() throws Exception {
         Mockito.when(bookRepository.findById(id)).thenReturn(java.util.Optional.ofNullable(book1));
         Book responseBook = bookService.getBook(id);
+
         Assert.assertEquals(responseBook, book1);
     }
 
@@ -67,6 +70,7 @@ public class BookServiceShould {
     @Test
     public void callRepositoryWhenAddingBook() throws Exception {
         bookService.addBook(book1);
+
         verify(bookRepository, times(1)).saveAndFlush(book1);
     }
 
@@ -75,6 +79,7 @@ public class BookServiceShould {
         bookList.add(book1);
         bookList.add(book2);
         Set<BookDTO> allBooks = bookService.getAllBooks();
+
         Assert.assertThat(allBooks.size(),is(2));
     }
 
@@ -82,6 +87,7 @@ public class BookServiceShould {
     public void returnEmptyListIfThereAreNoBooks() throws Exception {
         when(bookRepository.findAll()).thenReturn(bookList);
         Set<BookDTO> allBooks = bookService.getAllBooks();
+
         Assert.assertThat(allBooks.isEmpty(),is(true));
     }
 }
