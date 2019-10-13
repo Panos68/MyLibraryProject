@@ -48,8 +48,10 @@ public class AuthorServiceImpl implements AuthorService {
         Author author = getAuthor(authorId);
         for (Long id : bookIds){
             final Book book = bookService.getBook(id);
-            author.addBook(book);
-            authorRepository.saveAndFlush(author);
+            if (book!=null) {
+                author.addBook(book);
+                authorRepository.saveAndFlush(author);
+            }
         }
     }
     private Author getAuthor(Long authorId) throws Exception {

@@ -26,7 +26,9 @@ public class Author {
 
     public Author(String name, List<Book> books) {
         this.name = name;
-        this.books = books;
+        if (!CollectionUtils.isEmpty(books)) {
+            this.books = books;
+        }
     }
 
     public String getName() {
