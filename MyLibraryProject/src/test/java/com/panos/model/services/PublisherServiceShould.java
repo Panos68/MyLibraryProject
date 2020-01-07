@@ -61,7 +61,7 @@ public class PublisherServiceShould {
     }
 
     @Test
-    public void returnListOfAllExistingPublishers() throws Exception {
+    public void returnListOfAllExistingPublishers() {
         publisherList.add(publisher1);
         publisherList.add(publisher2);
         Set<PublisherDTO> publisherDTOS = publisherService.getAllPublishers();
@@ -70,14 +70,14 @@ public class PublisherServiceShould {
     }
 
     @Test
-    public void returnEmptyListIfThereAreNoPublishers() throws Exception {
+    public void returnEmptyListIfThereAreNoPublishers() {
         Set<PublisherDTO> publisherDTOS = publisherService.getAllPublishers();
 
         Assert.assertThat(publisherDTOS.isEmpty(), is(true));
     }
 
     @Test
-    public void saveToRepositoryWhenCreatingAuthor() throws Exception {
+    public void saveToRepositoryWhenCreatingAuthor() {
         publisherService.createPublisher(publisherDTO1);
 
         verify(publisherRepository, times(1)).saveAndFlush(publisher1);
