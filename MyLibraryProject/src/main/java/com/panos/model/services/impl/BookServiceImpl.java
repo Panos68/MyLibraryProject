@@ -1,6 +1,5 @@
 package com.panos.model.services.impl;
 
-import com.panos.model.Author;
 import com.panos.model.Book;
 import com.panos.model.dto.BookDTO;
 import com.panos.model.repositories.BookRepository;
